@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -62,13 +63,8 @@ public class GameController : MonoBehaviour
         pointsText.text = Points.ToString();
     }
 
-    public void OpenMineralsList()
+    public void MainMenu()
     {
-        MineralsList.SetActive(true);
-    }
-    
-    public void CloseMineralsList()
-    {
-        MineralsList.SetActive(false);
+        SceneManager.LoadScene(0);
     }
 }
