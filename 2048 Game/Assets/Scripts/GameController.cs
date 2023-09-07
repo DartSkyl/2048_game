@@ -8,16 +8,15 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance;
 
-    [SerializeField]
-    public GameObject MineralsList;
-
     public static int Points { get; private set; }
     public static bool GameStarted { get; private set; }
 
     [SerializeField]
     private TextMeshProUGUI gameResult;
     [SerializeField]
-    private TextMeshProUGUI pointsText;
+    private TextMeshProUGUI pointsText;  
+    [SerializeField]
+    private TextMeshProUGUI recordText;
 
     private void Awake()
     {
@@ -33,6 +32,7 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         gameResult.text = "";
+        recordText.text = PlayerPrefs.GetInt("Score").ToString();
 
         SetPoints(0);
         GameStarted = true;
@@ -61,10 +61,19 @@ public class GameController : MonoBehaviour
     {
         Points = points;
         pointsText.text = Points.ToString();
+        if (PlayerPrefs.GetInt("Score") < Points)
+            PlayerRecord(Points);
+        
     }
 
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void PlayerRecord(int recordPoints)
+    {
+        PlayerPrefs.SetInt("Score", recordPoints);
+        recordText.text = recordPoints.ToString();
     }
 }
