@@ -15,7 +15,7 @@ public class Cell : MonoBehaviour
     public bool IsEmpty => Value == 0;
     public bool HasMerged { get; private set; }
 
-    public const int MaxValue = 11;
+    public const int MaxValue = 12;
 
     [SerializeField]
     private Image image;
@@ -71,6 +71,8 @@ public class Cell : MonoBehaviour
             ColorManager.Instance.PointsLightColor;
 
         image.color = ColorManager.Instance.CellColors[Value];
+        if (PlayerPrefs.GetInt("maxCell") < Value)
+            GameController.Instance.MaxCell(Value);
     }
 
     public void SetAnimation(CellAnimation animation)

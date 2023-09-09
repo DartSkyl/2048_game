@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI recordText;
 
+
     private void Awake()
     {
         if (Instance == null)
@@ -43,13 +44,13 @@ public class GameController : MonoBehaviour
     public void Win()
     {
         GameStarted = false;
-        gameResult.text = "You Win!";
+        gameResult.text = "Вы победили";
     }
 
     public void Lose()
     {
         GameStarted = false;
-        gameResult.text = "You Lose!";
+        gameResult.text = "Вы проиграли!";
     }
    
     public void AddPoints(int points)
@@ -75,5 +76,10 @@ public class GameController : MonoBehaviour
     {
         PlayerPrefs.SetInt("Score", recordPoints);
         recordText.text = recordPoints.ToString();
+    }
+
+    public void MaxCell(int maxCell)
+    {
+        PlayerPrefs.SetInt("maxCell", maxCell);
     }
 }
